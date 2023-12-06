@@ -4,15 +4,6 @@
 
 Shell.OS is a PHP web shell, but with an OS-like interface. It can be useful for CTF's and Red Teams Pentest Labs.
 
-## Table of Contents
-
-- [Features](#features)
-- [Getting Started](#getting-started)
-- [Usage](#usage)
-- [Issues](#issues)
-- [License](#license)
-- [Support](#support)
-
 ## ⚠️ DISCLAIMER ⚠️
 
 This software is provided for educational purposes and is intended to be used in a controlled environment such as Capture The Flag (CTF) challenges and penetration testing labs. The author is not responsible for any unlawful or illegal use of this software. By using this software, you agree to take full responsibility for your actions.
