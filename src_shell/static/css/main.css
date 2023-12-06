@@ -1,0 +1,879 @@
+:root {
+  /* MAIN COLORS */
+  --bg: #181818;
+  --fg: #0f0f0f;
+  --window: #282828;
+  --text: #E0E0E0;
+  --border: #101010;
+
+  --shadow: rgba(0, 0, 0, 0.25);
+
+  --red: #f7768e;
+  --yellow: #e0af68;
+  --green: #9ece6a;
+
+  --alpha50: rgba(0, 0, 0, 0.5);
+  --alpha25: rgba(0, 0, 0, 0.25);
+}
+
+.theme-dark {
+  --bg: #181818;
+  --fg: #0f0f0f;
+  --window: #282828;
+  --text: #E0E0E0;
+  --border: #101010;
+  --alpha50: rgba(0, 0, 0, 0.5);
+
+  --invert: invert(1);
+}
+
+.theme-light {
+  --bg: #E0E0E0;
+  --fg: #F0F0F0;
+  --window: #F8F8F8;
+  --text: #181818;
+  --border: #808080;
+  --invert: invert(0);
+  --alpha50: rgba(255, 255, 255, 0.5);
+}
+
+/* -------------------------------------------------------------------------------- */
+/* BASE STYLING */
+body {
+  background-color: var(--bg);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+}
+
+button {
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+input[type="text"] {
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+::selection {
+  background: var(--text);
+  color: var(--bg);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--text) transparent;
+}
+
+/* -------------------------------------------------------------------------------- */
+/* DESKTOP */
+#desktop {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--bg);
+  position: absolute;
+  z-index: -2;
+}
+
+#desktop-background {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.25;
+}
+
+#desktop-background path {
+  fill: var(--text);
+}
+
+.desktop-icon {
+  flex: 1;
+  flex-grow: 0;
+  width: 96px;
+  height: 128px;
+  text-align: center;
+  padding: 16px;
+  cursor: pointer;
+  z-index: -1;
+}
+
+.desktop-icon img {
+  width: 64px;
+  height: 64px;
+  z-index: -99;
+  cursor: pointer;
+  z-index: -1;
+}
+
+.icon-text {
+  font-family: monospace;
+  color: var(--text);
+  font-size: 1em;
+  z-index: -1;
+}
+
+/* -------------------------------------------------------------------------------- */
+/* WINDOW */
+.window {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 0px 16px var(--shadow);
+  width: 50vw;
+  height: 50vh;
+  background-color: var(--window);
+  border: 1px solid var(--border);
+  top: calc(25vh - 16px);
+  left: 25vw;
+  border-radius: 8px;
+  position: absolute !important;
+}
+
+.window-title {
+  flex: 1;
+  flex-grow: 0;
+  width: 100%;
+  height: 32px;
+  background-color: rgba(0, 0, 0, 0.25);
+  border-bottom: 1px solid var(--border);
+  top: 0;
+  cursor: pointer;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.window-title p {
+  font-family: monospace;
+  text-transform: uppercase;
+  color: var(--text);
+  font-size: 1em;
+}
+
+.window-close-button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+
+.window-content {
+  flex: 1;
+  width: 100%;
+  background-color: transparent;
+  overflow-y: visible;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* -------------------------------------------------------------------------------- */
+/* TASKBAR */
+#taskbar {
+  font-family: monospace;
+  width: 100%;
+  height: 32px;
+  background-color: var(--fg);
+  position: absolute;
+  bottom: 0;
+}
+
+/* -------------------------------------------------------------------------------- */
+/* TERMINAL APPLICATION */
+#terminal-viewport {
+  flex: 1;
+  width: 100%;
+  background-color: var(--alpha50);
+  border-bottom: 1px solid var(--border);
+  overflow-y: visible;
+  overflow-x: hidden;
+}
+
+#terminal-viewport pre {
+  font-family: monospace;
+  font-size: 1.1em;
+  color: var(--text);
+  transform: translate(16px, 0);
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+#terminal-viewport pre::selection {
+  color: var(--bg);
+  background-color: var(--text);
+}
+
+
+#terminal-input {
+  flex: 1;
+  flex-grow: 0;
+  flex-basis: 32px;
+  font-family: monospace;
+  font-size: 1em;
+  color: var(--text);
+  background-color: transparent;
+  padding-left: 16px;
+  padding-right: 16px;
+  box-sizing: border-box;
+}
+
+/* -------------------------------------------------------------------------------- */
+/* FILE MANAGER APPLICATION */
+
+/* FILE MANAGER TOOLBAR */
+#file-manager-toolbar {
+  display: flex;
+  flex-direction: row;
+  flex-basis: 32px;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+}
+
+#file-manager-status-bar {
+  flex: 1;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.35);
+  font-family: monospace;
+  color: var(--text);
+  line-height: 32px;
+  padding-left: 16px;
+  box-sizing: border-box;
+  text-align: left;
+  position: sticky;
+  top: 0px;
+}
+
+#file-manager-toolbar a.toolbar-button {
+  flex: 1;
+  width: 16px;
+  height: 16px;
+  flex-grow: 0;
+  padding: 8px;
+  background-color: var(--fg);
+  cursor: pointer;
+}
+
+#file-manager-toolbar .toolbar-button img {
+  width: 16px;
+  height: 16px;
+  filter: var(--invert);
+}
+
+#file-manager-toolbar a.toolbar-button:hover {
+  filter: var(--invert);
+}
+
+#grid-view-button.active {
+  filter: invert(1) !important;
+}
+
+#list-view-button.active {
+  filter: invert(1) !important;
+}
+
+/* FILE MANAGER CONTENTS */
+#file-manager {
+  display: flex;
+  background-color: transparent;
+  color: var(--text);
+  font-family: monospace;
+  overflow: auto;
+  align-items: baseline;
+}
+
+/* GRID VIEW CSS */
+
+.flex-grid {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 16px;
+}
+
+#file-manager-icon-wrapper.grid-icon-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 0;
+  cursor: pointer;
+  padding: 8px
+}
+
+#file-manager-icon-wrapper.grid-icon-wrapper:hover {
+  background-color: var(--alpha25);
+  border-radius: 8px;
+}
+
+#file-manager-icon-wrapper .grid-icon {
+  flex: 1;
+  width: 64px;
+  height: 64px;
+  pointer-events: none;
+}
+
+#file-manager-icon-wrapper .grid-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  word-wrap: break-word;
+  word-break: break-word;
+  text-align: center;
+  pointer-events: none;
+}
+
+/* LIST VIEW CSS */
+
+.flex-list {
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.list-icon {
+  width: 24px;
+}
+
+#file-manager-list.table {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+  padding-bottom: 16px;
+}
+
+#file-manager-list .row {
+	display: flex;
+	flex-direction: row;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+	word-break: break-word;
+  align-items: center;
+}
+
+#file-manager-list .row:nth-child(odd) {
+  background-color: var(--alpha25);
+}
+
+#file-manager-list .cell {
+  flex: 1;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+#file-manager-list-header-row {
+  height: 32px;
+	text-align: left !important;
+	position: sticky;
+	top: 0;
+	background: var(--bg) !important;
+  padding-left: 16px;
+  padding-right: 16px;
+  pointer-events: none;
+}
+
+#file-manager-data-row {
+  padding-left: 16px;
+  padding-right: 16px;
+  cursor: pointer;
+}
+
+#file-manager .icon {
+  flex: 0.25 !important;
+  text-align: center;
+  pointer-events: none;
+}
+
+#file-manager .name {
+  flex: 4 !important;
+  pointer-events: none;
+}
+
+#file-manager .perms {
+  flex: 1 !important;
+  pointer-events: none;
+}
+
+#file-manager .owner {
+  flex: 1 !important;
+  pointer-events: none;
+}
+
+#file-manager .size {
+  flex: 1 !important;
+  pointer-events: none;
+}
+
+#file-manager .date {
+  flex: 1 !important;
+  pointer-events: none;
+}
+
+/* -------------------------------------------------------------------------------- */
+/* Contextual Menu */
+#contextMenu {
+  position: absolute;
+  background-color: var(--fg);
+  color: var(--text);
+  font-family: monospace;
+  font-size: 1em;
+  border: 1px solid var(--border);
+  box-shadow: 0px 0px 16px var(--shadow);
+  border-radius: 4px;
+  z-index: 999;
+  list-style-type: none;
+}
+
+#contextMenu li {
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#contextMenu li:hover {
+  background-color: var(--text);
+  color: var(--fg);
+  border-radius: 4px;
+}
+
+/* -------------------------------------------------------------------------------- */
+/* SETTINGS */
+#settings {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  color: var(--text);
+  font-family: monospace;
+  width: 100%;
+  height: auto;
+  overflow: auto;
+}
+
+#settings form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  ;
+}
+
+.single-setting-container {
+  flex: 1;
+  height: 32px;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-grow: 0;
+  padding: 16px;
+  gap: 16px;
+}
+
+.single-setting-container p {
+  flex: 1;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.single-setting-container input,
+.single-setting-container select {
+  flex: 1;
+  background-color: rgba(0, 0, 0, 0.35);
+  font-family: monospace;
+  color: var(--text);
+  padding: 16px;
+  box-sizing: border-box;
+  text-align: left;
+  outline: none;
+  border: none;
+  border-radius: 8px;
+}
+
+#settings #buttons-container {
+  display: flex;
+  flex-direction: row-reverse;
+  bottom: 0;
+  width: 50%;
+  right: 0;
+  padding: 16px;
+  gap: 16px;
+  flex-grow: 0;
+  align-self: flex-end;
+}
+
+.settings-button {
+  width: 128px;
+  background-color: rgba(0, 0, 0, 0.35);
+  font-family: monospace;
+  font-size: 1.2em;
+  padding: 8px;
+  box-sizing: border-box;
+  text-align: center;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#reset-settings-button {
+  order: 1;
+  border: 1px solid var(--red);
+  color: var(--red);
+}
+
+#save-settings-button {
+  order: 0;
+  border: 1px solid var(--green);
+  color: var(--green);
+}
+
+#reset-settings-button:hover {
+  border: 1px solid var(--red);
+  background-color: var(--red);
+  color: var(--bg);
+}
+
+#save-settings-button:hover {
+  border: 1px solid var(--green);
+  background-color: var(--green);
+  color: var(--bg);
+}
+
+/* -------------------------------------------------------------------------------- */
+/* Editor Window */
+
+#editor-toolbar {
+  flex: 1;
+  width: 100%;
+  flex-basis: 32px;
+  flex-grow: 0;
+  display: flex;
+  flex-direction: row;
+}
+
+#editor-toolbar .toolbar-button {
+  flex: 1;
+  font-family: monospace;
+  padding: 4px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-grow: 0;
+  text-decoration: none;
+  color: var(--text);
+  white-space: nowrap;
+  border-right: 1px solid var(--border);
+}
+
+#editor-toolbar .toolbar-button img {
+  width: 16px;
+  height: 16px;
+  filter: var(--invert);
+  border: none;
+}
+
+#editor-toolbar .toolbar-button:hover {
+  background-color: var(--text);
+  color: var(--bg);
+  filter: invert(0) !important;
+}
+
+#editor-toolbar .toolbar-button:hover>img {
+  filter: invert(0) !important;
+}
+
+#editor-text-area {
+  flex: 1;
+  font-family: monospace;
+  width: 100%;
+  outline: none;
+  border: none;
+  background-color: var(--fg);
+  color: var(--text);
+  padding: 16px;
+  box-sizing: border-box;
+  resize: none;
+}
+
+#editor-status-bar {
+  flex: 1;
+  width: 100%;
+  flex-basis: 32px;
+  flex-grow: 0;
+  display: flex;
+  flex-direction: row;
+  padding-left: 16px;
+  padding-right: 16px;
+  box-sizing: border-box;
+}
+
+#editor-status-bar #editor-file-path {
+  flex: 1;
+  font-family: monospace;
+  color: var(--text);
+  word-wrap: break-word;
+}
+
+/* -------------------------------------------------------------------------------- */
+/* Modal Window*/
+
+.modal {
+  position: fixed;
+  z-index: 9999;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--window);
+  box-shadow: 0px 0px 16px var(--shadow);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  font-family: monospace;
+}
+
+.modal p {
+  flex: 1;
+}
+
+.modal input {
+  flex: 1;
+  background-color: var(--shadow);
+  color: var(--text);
+  padding: 8px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  text-align: left;
+  outline: none;
+  border: 1px solid var(--border);
+}
+
+.modal .button-container {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  align-self: flex-end;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.modal button {
+  flex: 1;
+  width: 50%;
+  box-sizing: border-box;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.modal .modal-yes {
+  border: 1px solid var(--green);
+  color: var(--green);
+  order: 2;
+}
+
+.modal .modal-yes:hover {
+  background-color: var(--green);
+  color: var(--bg);
+}
+
+.modal .modal-no {
+  border: 1px solid var(--red);
+  color: var(--red);
+  order: 1;
+}
+
+.modal .modal-no:hover {
+  background-color: var(--red);
+  color: var(--bg);
+}
+
+.modal-overlay {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  backdrop-filter: grayscale(1) blur(4px);
+}
+
+/* -------------------------------------------------------------------------------- */
+/* Manuals */
+
+#manuals-list {
+  display: flex;
+  flex-direction: row;
+}
+
+.manual-viewport {
+  color: var(--text);
+  background-color: var(--fg);
+  font-family: monospace;
+  appearance: none;
+  padding: 16px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.manual-viewport h1,
+.manual-viewport h2,
+.manual-viewport h3,
+.manual-viewport h4,
+.manual-viewport h5,
+.manual-viewport h6,
+.manual-viewport p,
+.manual-viewport pre {
+  flex: 1;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.manual-viewport h1,
+.manual-viewport h2,
+.manual-viewport h3,
+.manual-viewport h4,
+.manual-viewport h5,
+.manual-viewport h6 {
+  font-family: monospace;
+  color: var(--text);
+}
+
+/* links styling */
+.manual-viewport a {
+  color: var(--yellow);
+  text-decoration: none;
+}
+
+.manual-viewport a:hover {
+  color: var(--green);
+  text-decoration: none;
+}
+
+.manual-viewport pre {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 16px;
+  border-radius: 8px;
+  color: var(--text);
+}
+
+.manual-viewport code {
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  cursor: pointer;
+}
+
+.manual-icon-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 0;
+  padding: 16px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.manual-icon-container p,
+.manual-icon-container img {
+  flex: 1;
+  font-family: monospace;
+  color: var(--text);
+}
+
+/* -------------------------------------------------------------------------------- */
+/* Notifications */
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+  animation-duration: 500ms;
+  animation-fill-mode: forwards;
+}
+
+.fadeOut {
+  animation-name: fadeOut;
+  animation-duration: 500ms;
+  animation-fill-mode: forwards;
+}
+
+.notification {
+  width: auto;
+  height: 32px;
+  font-family: monospace;
+  font-size: 1em;
+  background-color: var(--fg);
+  color: var(--text);
+  box-shadow: 0px 0px 16px var(--shadow);
+  padding: 16px;
+  position: absolute;
+  left: 50%;
+  top: 85%;
+  transform: translate(-50%, -25%);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+}
+
+.notification.success {
+  border: 1px solid var(--green);
+  color: var(--green);
+}
+
+.notification.error {
+  border: 1px solid var(--red);
+  color: var(--red);
+}

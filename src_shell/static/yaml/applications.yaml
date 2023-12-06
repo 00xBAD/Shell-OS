@@ -1,0 +1,107 @@
+terminal:
+  title: Terminal
+  instances: true
+  content: |
+    <div id="terminal-viewport"></div>
+    <input type="text" placeholder=">" id="terminal-input" autofocus>
+file-manager:
+  title: File Manager
+  instances: false
+  content: |
+    <div id="file-manager-toolbar">
+      <input type="text" id="file-manager-status-bar"></input>
+      <a class="toolbar-button" id="grid-view-button"><img src="./static/font-awesome/th-large.svg"></img></a>
+      <a class="toolbar-button" id="list-view-button"><img src="./static/font-awesome/th-list.svg"></img></a>
+    </div>
+    <div id="file-manager"></div>
+  context:
+    empty:
+      - name: New Folder
+        action: newDir
+      - name: New File
+        action: newFile
+      - name: Upload File
+        action: uploadFile
+    dir:
+      - name: Rename Folder
+        action: renameDir
+      - name: Delete Folder
+        action: deleteDir
+    file:
+      - name: Open File
+        action: openFile
+      - name: Rename File
+        action: renameFile
+      - name: Delete File
+        action: deleteFile
+      - name: Download File
+        action: downloadFile
+editor:
+  title: Editor
+  instances: true
+  content: |
+    <div id="editor-toolbar">
+      <a id="editor-save-button" class="toolbar-button">
+        <img src="./static/font-awesome/save.svg" class="toolbar-button">SAVE SERVER
+      </a>
+      <a id="editor-local-load-button" class="toolbar-button">
+        <img src="./static/font-awesome/upload.svg" class="toolbar-button">LOAD LOCAL
+      </a>
+      <a id="editor-local-save-button" class="toolbar-button">
+        <img src="./static/font-awesome/save.svg" class="toolbar-button">SAVE LOCAL
+      </a>
+    </div>
+    <textarea id="editor-text-area"></textarea>
+    <div id="editor-status-bar">
+      <p id="editor-file-path"></p>
+    </div>
+manuals:
+  title: Manuals
+  instances: false
+  content: |
+    <div id="manuals-list"></div>
+phpinfo:
+  title: phpinfo
+  instances: false
+  content: |
+    <div id="phpinfo-viewport"></div>
+settings:
+  title: Settings
+  instances: false
+  content: |
+    <div id="settings">
+        <div class="single-setting-container">
+          <p>File Manager Initial Path</p>
+          <input id="file-manager-initial-path"></input>
+        </div>
+        <div class="single-setting-container">
+          <p>File Manager View Mode</p>
+          <select id="file-manager-view-mode">
+            <option value="grid">Grid</option>
+            <option value="list">List</option>
+          </select>
+        </div>
+        <div class="single-setting-container">
+          <p> Terminal Execution Mode</p>
+          <select id="terminal-execution-mode">
+            <option value="exec">exec</option>
+            <option value="shell_exec">shell_exec</option>
+            <option value="system">system</option>
+            <option value="passthru">passthru</option>
+            <option value="proc_open">proc_open</option>
+            <option value="popen">popen</option>
+          </select>
+        </div>
+        <div class="single-setting-container">
+          <p>OS Theme</p>
+          <select id="theme-os">
+            <option value="theme-dark">Dark</option>
+            <option value="theme-light">Light</option>
+          </select>
+        </div>
+
+        <div id="buttons-container">
+          <button id="reset-settings-button" class="settings-button">RESET</button>
+          <button id="save-settings-button" class="settings-button">SAVE</button>
+        </div>
+    </div>

@@ -1,0 +1,119 @@
+#phpinfo-viewport body {
+    font-family: monospace;
+    font-size: 1.2em;
+    color: var(--text);
+    background-color: transparent;
+}
+
+#phpinfo-viewport pre {
+    margin: 0;
+    font-family: monospace;
+    color: var(--text);
+    white-space: nowrap;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+#phpinfo-viewport a:link {
+    color: var(--yellow);
+    text-decoration: none;
+    background-color: #fff;
+}
+
+#phpinfo-viewport a:hover {
+    text-decoration: var(--bg);
+    background-color: var(--yellow);
+}
+
+#phpinfo-viewport table {
+    border-collapse: collapse;
+    color: var(--text);
+    border: 0;
+    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
+}
+
+#phpinfo-viewport .center {
+    font-family: monospace;
+    font-size: 1.2em;
+    color: var(--text);
+    text-align: center;
+    white-space: pre-wrap;
+}
+
+#phpinfo-viewport .center table {
+    text-align: left;
+    width: 100%;
+}
+
+#phpinfo-viewport .center th {
+    text-align: center !important;
+}
+
+#phpinfo-viewport td,
+#phpinfo-viewport th {
+    border: 1px solid var(--border);
+    font-size: 75%;
+    vertical-align: baseline;
+    padding: 4px 5px;
+}
+
+#phpinfo-viewport th {
+    position: sticky;
+    top: 0;
+    background: var(--fg);
+}
+
+#phpinfo-viewport h1 {
+    font-size: 150%;
+}
+
+#phpinfo-viewport h2 {
+    font-size: 125%;
+}
+
+#phpinfo-viewport h2 a:link,
+#phpinfo-viewport h2 a:visited {
+    color: inherit;
+    background: inherit;
+}
+
+#phpinfo-viewport .p {
+    text-align: left;
+}
+
+#phpinfo-viewport .e {
+    background-color: var(--fg);
+    color: var(--text);
+    width: 300px;
+    font-weight: bold;
+}
+
+#phpinfo-viewport .h {
+    background-color: var(--fg);
+    color: var(--text);
+    font-weight: bold;
+}
+
+#phpinfo-viewport .v {
+    background-color: var(--bg);
+    color: var(--text);
+    max-width: 300px;
+    overflow-x: auto;
+    word-wrap: break-word;
+}
+
+#phpinfo-viewport .v i {
+    color: #999;
+}
+
+#phpinfo-viewport .h img {
+    float: right;
+    border: 0;
+}
+
+#phpinfo-viewport hr {
+    width: 934px;
+    background-color: #ccc;
+    border: 0;
+    height: 1px;
+}
